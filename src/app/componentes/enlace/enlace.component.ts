@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RespuestaEnlace } from '../../interfaces/interfaces'
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-enlace',
@@ -12,8 +13,14 @@ export class EnlaceComponent implements OnInit {
       url: ''
     };
 
-  constructor() { }
+  constructor( private storage: StorageService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getStorage();
+  }
+  getStorage(){
+    console.log("desde componenteenlaces storage" + JSON.stringify(this.storage.getItem('links')));
+  }
+
 
 }
