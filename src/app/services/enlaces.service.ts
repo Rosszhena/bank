@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { RespuestaEnlace, link } from '../interfaces/interfaces';
+import { RespuestaEnlace } from '../interfaces/interfaces';
 import { post } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 
@@ -16,13 +16,10 @@ const httpOptions = {
 })
 export class EnlacesService {
 
-
   constructor( private http: HttpClient) {}
 
     getEnlaces() {
-
-      return this.http.get<RespuestaEnlace>(`${ URL }/api/alias/69170`);
-
+      return this.http.get<RespuestaEnlace>(`${ URL }/api/alias/93390`);
   }
 
 
@@ -31,27 +28,7 @@ export class EnlacesService {
     const body=JSON.stringify(url);
     return this.http.post(`${URL}/api/alias`, body,httpOptions)
 }
-/*
-async postEnlaces(url:post) {
-  let respuesta;
-  const body=JSON.stringify(url);
- console.log(body);
-  await this.http.post(`${URL}/api/alias`, body, httpOptions)
-  .toPromise().then((response) => {
-    respuesta = response;
-    console.log(respuesta)
-  }).catch(e => console.error(e));
-  return respuesta;
-}
-/*
- postEnlaces(url:post) {
-  const body=JSON.stringify(url);
- console.log("body+++++++" +body);
-   this.http.post(`${URL}/api/alias`, body, httpOptions)
-  .subscribe(results=>{
-    console.log("hola" + results.toString)
-  })
-}*/
+
 }
 
 

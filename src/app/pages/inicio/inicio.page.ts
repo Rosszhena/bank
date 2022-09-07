@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EnlacesService } from '../../services/enlaces.service';
-import { RespuestaEnlace } from '../../interfaces/interfaces';
+import { RespuestaEnlace, Links, post } from '../../interfaces/interfaces';
 
 interface Componente {
   icon: string;
@@ -15,45 +15,38 @@ interface Componente {
 })
 export class InicioPage implements OnInit {
 
-  componentes: Componente[] = [
-    {
-      icon: 'bandage-outline',
-      name: 'Action Sheet',
-      redirectTo: '/action-sheet'
-
-    },
-    {
-      icon: 'logo-apple-appstore',
-      name: 'Alert',
-      redirectTo: '/alert'
-
-    }
-  ];
-
   enlaces: RespuestaEnlace[] = [];
+  link: Links[] = [];
+  post = { url: ''};
 
   constructor(private enlacesService: EnlacesService) { }
 
   ngOnInit() {
-    this.enlacesService.getEnlaces()
-    .subscribe( resp => {
-     console.log(resp);
-      this.enlaces.push( resp);
-    });
-  }
-
-  tempImages:string[] = [];
-
-  post = {
-    url: ''
+    this.next();
   }
 
   crearEnlace(){
-    console.log("console postcrear Enlace" + this.post.url);
     this.enlacesService.postEnlaces (this.post)
     .subscribe( resp => {
-      console.log(resp);
-       this.enlaces.push( resp);
+       this.link.push(resp);
+       console.log(this.link.length)
+       console.log("pruebalinkcon this.link" + this.link);
+       console.log("pruebaenlaces con resp" + resp);
      });
+  }
+
+
+  next( event?  ) {
+    this.enlacesService.getEnlaces()
+    .subscribe( resp => {
+      this.enlaces.push(resp);
+
+      if ( event ) {
+        event.target.complete();
+        if(this.enlaces.length === 0 ){
+        event.target.disabled = true;
+        }
+      }
+    });
   }
 }
