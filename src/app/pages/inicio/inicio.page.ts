@@ -49,7 +49,11 @@ export class InicioPage implements OnInit {
   }
 
   crearEnlace(){
-    //console.log("console postcrear Enlace" + this.post.url);
-    this.enlacesService.postEnlaces ({ url: this.post.url })
+    console.log("console postcrear Enlace" + this.post.url);
+    this.enlacesService.postEnlaces (this.post)
+    .subscribe( resp => {
+      console.log(resp);
+       this.enlaces.push( resp);
+     });
   }
 }
