@@ -4,7 +4,7 @@ export interface RespuestaEnlace {
 
 export interface link {
   alias: number;
-  _links:{
+  links:{
     self: string;
     short: string;
   }
@@ -16,6 +16,9 @@ export interface post {
 }
 
 export interface Links {
-  self: string;
-  short: string;
+  alias: number;
+  links:{
+    self: string;
+    short: string;
+  }
 }

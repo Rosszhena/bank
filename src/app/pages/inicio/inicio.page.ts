@@ -29,9 +29,9 @@ export class InicioPage implements OnInit {
     this.enlacesService.postEnlaces (this.post)
     .subscribe( resp => {
        this.link.push(resp);
-       console.log(this.link.length)
-       console.log("pruebalinkcon this.link" + this.link);
-       console.log("pruebaenlaces con resp" + resp);
+       console.log(this.link.length);
+       console.log("pruebalinkcon this.link" + JSON.stringify(this.link[0].links.short));
+       console.log("pruebaenlaces >con resp" + JSON.stringify(resp.alias.links.self));
      });
   }
 
