@@ -17,7 +17,7 @@ export interface post {
 
 export interface Links {
   alias: number;
-  links:{
+  _links:{
     self: string;
     short: string;
   }

@@ -22,7 +22,9 @@ Compartir
 </ion-button>
 
 <!-- Refrescar -->
-
+<ion-refresher slot="fixed" (ionRefresh)="refresh()">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
 
 <!-- Enlaces -->
 <app-enlaces [enlaces]="enlaces"></app-enlaces>
