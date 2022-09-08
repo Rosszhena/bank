@@ -21,21 +21,25 @@ export class InicioPage implements OnInit {
   post = { url: ''};
   linkStorage: Links[] = [];
 
+  textValue: any;
+  enableSubmit = false;
+
   constructor(private enlacesService: EnlacesService,
     private storage: StorageService) { }
 
   ngOnInit() {
-    this.link =this.storage.getItem('links');
-    this.linkStorage = this.link ;
+    this.link =this.storage.getItem('links') != "" ? this.storage.getItem('links'): this.link;
+    this.linkStorage = this.link.length > 0 ? this.link.reverse() : this.link;
   }
 
-  crearEnlace(){
+  onKeyUp(event: any) {
+    this.enableSubmit = /^(http(s)?:\/\/)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(this.post.url);
+  }
+
+  createAlias(){
     this.enlacesService.postEnlaces (this.post)
     .subscribe( resp => {
        this.link.push(resp);
-       //console.log(this.link);
-       //console.log("pruebalinkcon this.link" + JSON.stringify(this.link[0]._links.short));
-       //console.log("pruebaenlaces >con resp" + JSON.stringify(resp._links.self));
        this.saveStorage();
       });
   }
@@ -44,12 +48,10 @@ export class InicioPage implements OnInit {
     this.storage.setItem('links', this.link);
     this.getStorage();
   }
-  getStorage(){
-    //console.log("desde componenteInicio storage" + JSON.stringify(this.storage.getItem('links')));
 
+  getStorage(){
     this.linkStorage =this.storage.getItem('links');
     console.log(`LINKSTORAGE${this.linkStorage}`)
     console.log(this.storage.getItem('links').length);
   }
-
 }

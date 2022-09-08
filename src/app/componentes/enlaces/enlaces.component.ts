@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RespuestaEnlace, link } from '../../interfaces/interfaces';
+import { RespuestaEnlace } from '../../interfaces/interfaces';
 import { StorageService } from '../../services/storage.service';
 
 @Component({

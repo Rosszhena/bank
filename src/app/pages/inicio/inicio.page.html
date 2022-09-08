@@ -9,17 +9,17 @@
 
 <ion-content>
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="crearEnlace()"
-    [disabled]="post.url.length < 1"
+    <ion-fab-button (click)="createAlias()"
+    [disabled]="!enableSubmit "
     color="primary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-list>
-    <ion-item>
+    <ion-item>  <ion-label position="floating">Enter link to shorten</ion-label>
       <ion-label position="floating"></ion-label>
-      <ion-input type="url" placeholder="Url" [(ngModel)]="post.url"></ion-input>
+      <ion-input class="link" type="url" autocomplete="on" clear-input="true" placeholder="e.g. http://www.google.com" [(ngModel)]="post.url" (keyup)="onKeyUp($event)"></ion-input>
     </ion-item>
   </ion-list>
 
