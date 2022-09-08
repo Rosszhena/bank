@@ -15,6 +15,13 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+    refreshingSpinner="bubbles">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item>
       <ion-label position="floating"></ion-label>
@@ -25,11 +32,8 @@
 <ion-grid fixed>
   <ion-row>
     <ion-col size="6" size-lg="3" size="4" size-sm="6" size-xs="12"
-             *ngFor="let item of linkStorage" >
-             <!-- Default Note -->
-
-<!-- Notes in a List -->
-<ion-list>
+              >
+<ion-list *ngFor="let item of linkStorage">
   <ion-item>
     <ion-label>{{item._links.self}}</ion-label>
     <ion-note slot="end">{{item.alias}}</ion-note>
@@ -39,11 +43,6 @@
     </ion-col>
   </ion-row>
 </ion-grid>
-
-<!-- Refrescar -->
-<ion-refresher slot="fixed" (ionRefresh)="refresh()">
-  <ion-refresher-content></ion-refresher-content>
-</ion-refresher>
 
 <!-- Enlaces -->
 <app-enlaces [enlaces]="enlaces"></app-enlaces>

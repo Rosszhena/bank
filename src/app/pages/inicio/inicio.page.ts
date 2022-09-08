@@ -21,7 +21,6 @@ export class InicioPage implements OnInit {
   post = { url: ''};
   linkStorage: Links[] = [];
 
-
   constructor(private enlacesService: EnlacesService,
     private storage: StorageService) { }
 
@@ -52,8 +51,14 @@ export class InicioPage implements OnInit {
     console.log(this.storage.getItem('links').length);
   }
 
-  refresh(  ){
-  }
 
+  refresh(event) {
+    console.log('Begin async operation');
+    this.getStorage();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
+  }
 
 }
