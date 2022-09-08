@@ -16,16 +16,10 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content
-    refreshingSpinner="bubbles">
-    </ion-refresher-content>
-  </ion-refresher>
-
   <ion-list>
     <ion-item>
       <ion-label position="floating"></ion-label>
-      <ion-input type="url" placeholder="Enter Input" [(ngModel)]="post.url"></ion-input>
+      <ion-input type="url" placeholder="Url" [(ngModel)]="post.url"></ion-input>
     </ion-item>
   </ion-list>
 

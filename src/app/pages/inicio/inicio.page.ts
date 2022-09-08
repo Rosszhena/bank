@@ -25,7 +25,8 @@ export class InicioPage implements OnInit {
     private storage: StorageService) { }
 
   ngOnInit() {
-    this.getStorage();
+    this.link =this.storage.getItem('links');
+    this.linkStorage = this.link ;
   }
 
   crearEnlace(){
@@ -41,7 +42,7 @@ export class InicioPage implements OnInit {
 
   saveStorage(){
     this.storage.setItem('links', this.link);
-
+    this.getStorage();
   }
   getStorage(){
     //console.log("desde componenteInicio storage" + JSON.stringify(this.storage.getItem('links')));
@@ -49,16 +50,6 @@ export class InicioPage implements OnInit {
     this.linkStorage =this.storage.getItem('links');
     console.log(`LINKSTORAGE${this.linkStorage}`)
     console.log(this.storage.getItem('links').length);
-  }
-
-
-  refresh(event) {
-    console.log('Begin async operation');
-    this.getStorage();
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 1000);
   }
 
 }
