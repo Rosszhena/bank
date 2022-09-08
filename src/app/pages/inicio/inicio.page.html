@@ -10,22 +10,31 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label position="floating">Mensaje</ion-label>
-      <ion-textarea [(ngModel)]="post.url"></ion-textarea>
+      <ion-label position="floating"></ion-label>
+      <ion-input type="url" placeholder="Enter Input" [(ngModel)]="post.url"></ion-input>
     </ion-item>
   </ion-list>
 
   <ion-button (click)="crearEnlace()"
   [disabled]="post.url.length < 1"
   color="primary">
-Compartir
+  <ion-icon name="add-outline"></ion-icon>
 </ion-button>
 
 <ion-grid fixed>
   <ion-row>
-    <ion-col size="12" size-lg="3" size="4" size-sm="6" size-xs="12"
+    <ion-col size="6" size-lg="3" size="4" size-sm="6" size-xs="12"
              *ngFor="let item of linkStorage" >
-             <h1>{{item}}</h1>
+             <!-- Default Note -->
+
+<!-- Notes in a List -->
+<ion-list>
+  <ion-item>
+    <ion-label>{{item._links.self}}</ion-label>
+    <ion-note slot="end">{{item.alias}}</ion-note>
+  </ion-item>
+</ion-list>
+
     </ion-col>
   </ion-row>
 </ion-grid>

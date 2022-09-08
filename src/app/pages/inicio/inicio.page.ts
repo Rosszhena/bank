@@ -19,7 +19,7 @@ export class InicioPage implements OnInit {
   enlaces: RespuestaEnlace[] = [];
   link: Links[] = [];
   post = { url: ''};
-  linkStorage: any;
+  linkStorage: Links[] = [];
 
 
   constructor(private enlacesService: EnlacesService,
