@@ -54,4 +54,5 @@ export class InicioPage implements OnInit {
     console.log(`LINKSTORAGE${this.linkStorage}`)
     console.log(this.storage.getItem('links').length);
   }
+
 }
