@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EnlacesService } from '../../services/enlaces.service';
-import { RespuestaEnlace, Links, post } from '../../interfaces/interfaces';
+import { RespuestaEnlace, Links } from '../../interfaces/interfaces';
 import { StorageService } from '../../services/storage.service';
 
 interface Componente {
@@ -26,7 +26,6 @@ export class InicioPage implements OnInit {
     private storage: StorageService) { }
 
   ngOnInit() {
-    this.next();
     this.getStorage();
   }
 
@@ -53,24 +52,8 @@ export class InicioPage implements OnInit {
     console.log(this.storage.getItem('links').length);
   }
 
-  refresh( event? ){
-    this.next (event, true );
+  refresh(  ){
   }
 
-  next( event?, pull: boolean = false  ) {
-    if ( pull){
-      this.enlaces = [];
-    }
-    this.enlacesService.getEnlaces()
-    .subscribe( resp => {
-      this.enlaces.push(resp);
 
-      if ( event ) {
-        event.target.complete();
-        if(this.enlaces.length === 0 ){
-        event.target.disabled = true;
-        }
-      }
-    });
-  }
 }
