@@ -16,11 +16,11 @@ export class EnlaceComponent implements OnInit {
   constructor( private storage: StorageService) { }
 
   ngOnInit() {
-    this.getStorage();
+   // this.getStorage();
   }
-  getStorage(){
+ /* getStorage(){
     console.log("desde componenteenlaces storage" + JSON.stringify(this.storage.getItem('links')));
-  }
+  }*/
 
 
 }

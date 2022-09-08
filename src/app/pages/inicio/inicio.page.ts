@@ -19,12 +19,15 @@ export class InicioPage implements OnInit {
   enlaces: RespuestaEnlace[] = [];
   link: Links[] = [];
   post = { url: ''};
+  linkStorage: any;
+
 
   constructor(private enlacesService: EnlacesService,
     private storage: StorageService) { }
 
   ngOnInit() {
     this.next();
+    this.getStorage();
   }
 
   crearEnlace(){
@@ -42,12 +45,16 @@ export class InicioPage implements OnInit {
     this.storage.setItem('links', this.link);
 
   }
+  getStorage(){
+    //console.log("desde componenteInicio storage" + JSON.stringify(this.storage.getItem('links')));
 
+    this.linkStorage =this.storage.getItem('links');
+    console.log(`LINKSTORAGE${this.linkStorage}`)
+    console.log(this.storage.getItem('links').length);
+  }
 
   refresh( event? ){
     this.next (event, true );
-
-
   }
 
   next( event?, pull: boolean = false  ) {
